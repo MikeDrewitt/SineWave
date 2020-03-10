@@ -1,13 +1,16 @@
 <template>
-  <div class="modal-wrapper">
+  <div class="modal-wrapper" v-on:blur="test">
     <div class="modal-content" :style="contentWidth">
       <slot />
+      <icon-button class="close-button" :on-click="toggle" icon="times" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
+
+import IconButton from "@/components/General/Buttons/IconButton.vue";
 
 interface ModalWidth {
   [state: string]: string;
@@ -20,38 +23,61 @@ const modualWidth: ModalWidth = {
   "4x": "80%"
 };
 
-@Component
+@Component({
+  components: {
+    IconButton
+  }
+})
 export default class Modal extends Vue {
-  @Prop({ default: false }) open!: boolean;
+  @Prop({ required: true }) open!: boolean;
+  @Prop({ required: true }) toggle!: (flag?: boolean) => void;
   @Prop({ default: "4x" }) width!: string;
 
+  mounted() {
+    window.addEventListener("keydown", this.handleKeyListener);
+  }
+
   contentWidth = `width: ${modualWidth[this.width]}`;
+
+  private handleKeyListener(event: KeyboardEvent): void {
+    if (event.keyCode === 27) this.toggle(false);
+  }
+
+  public test(): void {
+    console.log("Yeet");
+  }
 }
 </script>
 
 <style lang="sass" scoped>
 .modal-wrapper
-    padding-top: 200px
+  padding-top: 200px
 
-    position: fixed
-    z-index: 1
+  position: fixed
+  z-index: 1
 
-    left: 0
-    top: 0
-    width: 100%
-    height: 100%
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
 
-    overflow: auto
+  overflow: auto
 
-    border-radius: 3px
+  border-radius: 3px
 
-    background-color: rgba($black-dark, 0.75)
+  background-color: rgba($black-dark, 0.5)
 
 .modal-content
-    background-color: $white
-    margin: auto;
-    padding: 20px;
+  position: relative
 
-    border: 1px solid $black;
-    box-shadow: 2px 2px rgba($black, .9);
+  background-color: $white
+  margin: auto;
+  padding: 20px;
+
+  border: 1px solid $black-light;
+
+.close-button
+  position: absolute
+  top: 5px
+  right: 10px
 </style>

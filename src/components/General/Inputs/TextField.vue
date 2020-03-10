@@ -1,7 +1,12 @@
 <template>
   <div class="text-field">
-    <label class="input-label">{{ label }}</label>
-    <input :type="type" :placeholder="placeholder" v-on:change="onChange" />
+    <label v-if="label" class="input-label">{{ label }}</label>
+    <input
+      class="input"
+      :type="type"
+      :placeholder="placeholder"
+      v-on:change="onChange"
+    />
   </div>
 </template>
 
@@ -10,7 +15,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class TextField extends Vue {
-  @Prop({ required: true }) label!: string;
+  @Prop({ default: "" }) label!: string;
   @Prop({ required: true }) onChange!: (text: string) => void;
 
   @Prop({ default: "" }) placeholder!: string;
@@ -20,6 +25,31 @@ export default class TextField extends Vue {
 
 <style lang="sass" scoped>
 .text-field
+    width: 100%
+
+    flex-wrap: wrap
+
+    margin: 5px 0
+
 .input-label
+    width: 100%
     font-weight: bold
+    text-align: left
+
+.input
+    width: 100%
+    height: 30px
+
+    font-size: 16px
+
+    border-top-style: hidden
+    border-right-style: hidden
+    border-left-style: hidden
+    border-bottom-style: groove
+
+    background: none
+
+input:focus
+    outline: none
+    border-bottom-color: $accent-light
 </style>

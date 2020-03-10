@@ -38,7 +38,7 @@ nav
   width: 100%
   height: 50px
 
-  background-color: $primary
+  // background-color: $primary
 
   display: flex
   flex-wrap: wrap

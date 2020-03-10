@@ -1,26 +1,37 @@
 <template>
   <div>
     <icon-button
-      class="button"
+      class="icon-button"
       :on-click="toggleModal"
       icon="user-circle"
       size="2x"
     />
-    <modal :open="modal" v-if="modal" width="3x">
-      <div class="flex">
-        <text-field
-          class="row"
-          label="Email"
-          placeholder="Email"
-          :on-change="setEmail"
-        />
-        <text-field
-          class="row"
-          label="Password"
-          placeholder="Password"
-          :on-change="setPassword"
-        />
-      </div>
+    <modal v-if="modal" :open="modal" :toggle="toggleModal" width="2x">
+      <form class="flex">
+        <h2 class="title">Login</h2>
+        <div class="form-fields">
+          <text-field
+            class="row"
+            placeholder="Email"
+            type="email"
+            :on-change="setEmail"
+          />
+          <text-field
+            class="row"
+            placeholder="Password"
+            type="password"
+            :on-change="setPassword"
+          />
+          <Button
+            class="button"
+            type="submit"
+            :on-click="login"
+            :primary="true"
+          >
+            Log In
+          </Button>
+        </div>
+      </form>
     </modal>
   </div>
 </template>
@@ -28,12 +39,14 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 
+import Button from "@/components/General/Buttons/Button.vue";
 import IconButton from "@/components/General/Buttons/IconButton.vue";
 import Modal from "@/components/General/Modals/Modal.vue";
 import TextField from "@/components/General/Inputs/TextField.vue";
 
 @Component({
   components: {
+    Button,
     IconButton,
     Modal,
     TextField
@@ -45,8 +58,13 @@ export default class AccountLogin extends Vue {
   email!: string;
   password!: string;
 
-  public toggleModal(): void {
-    this.modal = !this.modal;
+  public login(): void {
+    console.log("Make request");
+  }
+
+  public toggleModal(flag?: boolean): void {
+    if (typeof flag === "boolean" && flag) this.modal = flag;
+    else this.modal = !this.modal;
   }
 
   public setEmail(value: string): void {
@@ -60,11 +78,34 @@ export default class AccountLogin extends Vue {
 </script>
 
 <style lang="sass" scoped>
-.button
+
+.icon-button
   padding: 8px
   color: $white
   cursor: pointer
 
-.button:hover
+.icon-button:hover
   color: $white-dark
+
+.form-fields
+  height: 100px
+
+.flex
+  justify-content: center
+  align-content: flex-start
+  height: 300px
+
+.title
+  width: 100%
+  height: 50px
+
+.row
+  width: 300px
+  height: 50px
+
+.button
+  width: 200px
+  height: 35px
+
+  margin-top: 25px
 </style>

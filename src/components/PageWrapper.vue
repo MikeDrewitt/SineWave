@@ -15,4 +15,6 @@ export default class PageWrapper extends Vue {}
 .page-wrapper
   width: 100%
   height: 100%
+
+  background-image: linear-gradient(to bottom right, $primary, $accent)
 </style>

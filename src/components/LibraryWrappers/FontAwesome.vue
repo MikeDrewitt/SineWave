@@ -6,10 +6,11 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faUserCircle);
+library.add(faTimes);
 
 @Component({
   components: {
