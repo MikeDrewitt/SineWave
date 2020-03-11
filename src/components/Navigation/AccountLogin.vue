@@ -95,9 +95,16 @@ export default class AccountLogin extends Vue {
   align-content: flex-start
   height: 300px
 
+  // background-image: linear-gradient(to bottom right, $primary-light 50%, $accent-light 50%)
+  background-color: $black-darker
+
+  color: $white
+
 .title
   width: 100%
   height: 50px
+
+  color: $white
 
 .row
   width: 300px

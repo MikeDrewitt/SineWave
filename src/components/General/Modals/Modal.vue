@@ -63,8 +63,6 @@ export default class Modal extends Vue {
 
   overflow: auto
 
-  border-radius: 3px
-
   background-color: rgba($black-dark, 0.5)
 
 .modal-content
@@ -72,12 +70,15 @@ export default class Modal extends Vue {
 
   background-color: $white
   margin: auto;
-  padding: 20px;
+  padding: 0;
 
-  border: 1px solid $black-light;
+  box-shadow: 15px 15px rgba($black, .8)
 
 .close-button
   position: absolute
+
   top: 5px
   right: 10px
+
+  color: $white
 </style>

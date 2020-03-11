@@ -2,19 +2,19 @@
   <nav class="nav">
     <ul>
       <li>
-        <router-link to="/">Home</router-link>
+        <navbar-link text="Home" icon="home" to="/" />
       </li>
       <li>
-        <router-link to="/">Inpsiration</router-link>
+        <navbar-link text="Inspiration" icon="home" to="/inspiration" />
       </li>
       <li>
-        <router-link to="/">Tasks</router-link>
+        <navbar-link text="Tasks" icon="home" to="/tasks" />
       </li>
       <li>
-        <router-link to="/">Renovation</router-link>
+        <navbar-link text="Renovation" icon="home" to="/renovation" />
       </li>
       <li>
-        <router-link to="/">Chores</router-link>
+        <navbar-link text="Chores" icon="home" to="/chores" />
       </li>
     </ul>
     <account-login class="account" />
@@ -23,11 +23,14 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+
 import AccountLogin from "@/components/Navigation/AccountLogin.vue";
+import NavbarLink from "@/components/Navigation/NavbarLink.vue";
 
 @Component({
   components: {
-    AccountLogin
+    AccountLogin,
+    NavbarLink
   }
 })
 export default class Navigation extends Vue {}
@@ -38,7 +41,7 @@ nav
   width: 100%
   height: 50px
 
-  // background-color: $primary
+  background-color: $primary
 
   display: flex
   flex-wrap: wrap

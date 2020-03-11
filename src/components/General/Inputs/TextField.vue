@@ -45,9 +45,10 @@ export default class TextField extends Vue {
     border-top-style: hidden
     border-right-style: hidden
     border-left-style: hidden
-    border-bottom-style: groove
+    border-bottom-style: hidden
 
-    background: none
+    border-radius: 2px
+    padding: 3px
 
 input:focus
     outline: none
